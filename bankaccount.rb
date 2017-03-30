@@ -9,7 +9,12 @@ class BankAccount
     @@accounts.push(a)
     return a
   end
-  
+
+  def self.total_funds
+    @@accounts.:+
+    return @@acounts
+  end
+
   def initialize
     @balance=0
   end
@@ -20,6 +25,10 @@ class BankAccount
   end
 
   def withdraw(amt)
+    unless @balance < amt
+      puts "not enough funds for that amount"
+      return
+    end
     @balance -= amt
     return @balance
   end
