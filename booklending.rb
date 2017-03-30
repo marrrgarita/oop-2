@@ -12,6 +12,7 @@ class Book
   end
 
   def self.current_due_date
+    Time.now + (60 * 60 * 24 * 7) #1 week
   end
 
   def self.overdue_books
@@ -40,12 +41,22 @@ class Book
   end
 
   def borrow
+    if lent_out? == true
+      @due_date = Book.current_due_date
+      @@on_shelf.delete(self)
+      @@on_loan.push(self)
+      "You have borrowed #{@title} and it is due back #{@due_date}"
+    elsif lent_out? != true
+      puts "Sorry #{title} is already borrowed"
+      @@on_shelf.include?(@title)
+    end
   end
 
   def return_to_library
   end
 
   def lent_out?
+    @@on_loan.include?(@title)
   end
 
 end
