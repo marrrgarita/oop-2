@@ -4,6 +4,10 @@ class BankAccount
 
   attr_accessor :balance
 
+  def self.accounts
+    @@accounts
+  end
+
   def self.create
     a = BankAccount.new
     @@accounts.push(a)
@@ -11,7 +15,7 @@ class BankAccount
   end
 
   def self.total_funds
-    @@accounts.:+
+    @@accounts.(:+)
     return @@acounts
   end
 
@@ -25,7 +29,7 @@ class BankAccount
   end
 
   def withdraw(amt)
-    unless @balance < amt
+    unless amt < @balance
       puts "not enough funds for that amount"
       return
     end
