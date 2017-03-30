@@ -4,9 +4,6 @@ class Book
 
   attr_accessor :due_date
 
-  def self.on_shelf
-    @@on_shelf
-  end
 
   def self.create(title, author, isbn)
     b = Book.new(title, author, isbn)
@@ -24,9 +21,15 @@ class Book
   end
 
   def self.available
+    @@on_shelf.each do |book|
+      puts "* #{book}"
+    end
   end
 
   def self.borrowed
+    @@on_loan.each do |book|
+      puts "* #{book}"
+    end
   end
 
   def initialize(title, author, isbn)
