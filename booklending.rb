@@ -3,7 +3,7 @@ class Book
   @@on_loan = []
 
   attr_accessor :due_date
-
+  attr_reader :title, :author, :isbn
 
   def self.create(title, author, isbn)
     b = Book.new(title, author, isbn)
@@ -18,17 +18,18 @@ class Book
   end
 
   def self.browse
+    return @@on_shelf.sample
   end
 
   def self.available
     @@on_shelf.each do |book|
-      puts "* #{book}"
+      puts "* #{book.title} By: #{book.author}"
     end
   end
 
   def self.borrowed
     @@on_loan.each do |book|
-      puts "* #{book}"
+      puts "* #{book.title} By: #{book.author}"
     end
   end
 
