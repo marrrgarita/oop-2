@@ -73,8 +73,12 @@ class Book
   end
 
   def renew
-    @due_date = Time.now + (60 * 60 * 24 * 7)
-    "You have renewed #{@title}, it's new due date is #{@due_date}"
+    if lent_out? != true
+      "This book is not loaned out"
+    elsif lent_out? == true
+      @due_date = Time.now + (60 * 60 * 24 * 7)
+      "You have renewed #{@title}, it's new due date is #{@due_date}"
+    end
   end
 
 end
