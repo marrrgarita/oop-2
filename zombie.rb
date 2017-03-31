@@ -4,8 +4,9 @@ class Zombie
   @@max_speed = 5
   @@max_strength = 8
   @@default_speed = 1
-  @@defaul_strength = 3
+  @@default_strength = 3
 
+  attr_reader :speed, :strength
 ################ CLASS METHODS
   def self.all
 
@@ -28,8 +29,18 @@ class Zombie
   end
 ################ INSTANCE METHODS
 
-  def initalize
+  def initialize(speed, strength)
+    if speed > @@max_speed
+      @speed = @@default_speed
+    else
+      @speed = speed
+    end
 
+    if strength > @@max_strength
+      @strength = @@default_strength
+    else
+      @strength = strength
+    end
   end
 
   def encounter
