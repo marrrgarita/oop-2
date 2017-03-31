@@ -9,11 +9,13 @@ class Zombie
   attr_reader :speed, :strength
 ################ CLASS METHODS
   def self.all
-
+    @@horde
   end
 
   def self.new_day
-
+    self.spawn
+    self.some_die_off
+    self.increase_plague_level
   end
 
   def self.some_die_off
@@ -21,7 +23,13 @@ class Zombie
   end
 
   def self.spawn
-
+    x = rand(@@plague_level)
+    x.times do
+      speed = rand(@@max_speed)
+      strength = rand(@@max_strength)
+      z = Zombie.new(speed, strength)
+      @@horde.push(z)
+    end
   end
 
   def self.increase_plague_level
