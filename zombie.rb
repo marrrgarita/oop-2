@@ -19,11 +19,15 @@ class Zombie
   end
 
   def self.deadliest_zombie
-    combo = []
-    @@horde.map do |zombie|
-        combo.push(zombie.speed + zombie.strength)
+    # combo = @@horde.map do |zombie|
+    #     {zombie => (zombie.speed + zombie.strength)}
+    #   end
+    #   combo.max do |zombie1, zombie2|
+    #     zombie1.values.first <=> zombie2.values.first
+    #   end
+      @@horde.max do |zombie1, zombie2|
+        zombie1.combine <=> zombie2.combine
       end
-      combo.max
   end
 
   def self.some_die_off
@@ -71,6 +75,10 @@ class Zombie
     else
       puts "You died!"
     end
+  end
+
+  def combine
+    @strength + @speed
   end
 
   def outrun_zombie?
