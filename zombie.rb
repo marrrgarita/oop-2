@@ -40,7 +40,7 @@ class Zombie
   end
 ################ INSTANCE METHODS
 
-  def initialize(speed, strength)
+  def initialize(speed = @@default_speed, strength = @@default_strength)
     if speed > @@max_speed
       @speed = @@default_speed
     else
@@ -55,15 +55,21 @@ class Zombie
   end
 
   def encounter
-
+    if outrun_zombie? == true && survive_attack? == true
+      puts "You escaped!"
+    elsif outrun_zombie? != true && survive_attack? == true
+      @@horde << Zombie.new
+    else
+      puts "You died!"
+    end
   end
 
   def outrun_zombie?
-
+    rand(@@max_speed) > @speed
   end
 
   def survive_attack?
-
+    rand(@@max_strength) > @strength
   end
 
 end
