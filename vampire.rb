@@ -12,9 +12,11 @@ class Vampire
     new_vampire
   end
 
-  # def self.sunrise
-  #   @@coven.delete_if{|vampire| vampire.drank_blood_today == false}
-  # end
+  def self.sunrise
+    @@coven.delete_if do |vampire|
+      vampire.drank_blood_today == false || vampire.in_coffin == false
+    end
+  end
 
   def self.coven
     @@coven
@@ -38,7 +40,8 @@ class Vampire
     @in_coffin = true
   end
 
-
-
-
 end
+
+edward = Vampire.create("Edward", 102)
+alice = Vampire.create("Alice", 123)
+jasper = Vampire.create("Japser", 99)
