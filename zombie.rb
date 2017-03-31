@@ -19,7 +19,9 @@ class Zombie
   end
 
   def self.some_die_off
-
+    rand(2).times do
+      @@horde.pop
+    end
   end
 
   def self.spawn
@@ -33,7 +35,8 @@ class Zombie
   end
 
   def self.increase_plague_level
-
+    @@plague_level += rand(10)
+    return @@plague_level
   end
 ################ INSTANCE METHODS
 
