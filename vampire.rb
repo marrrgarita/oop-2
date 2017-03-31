@@ -2,7 +2,7 @@ class Vampire
 
   @@coven = []
 
-  attr_reader :drank_blood_today, :in_coffin
+  attr_accessor :drank_blood_today, :in_coffin
 
 #####CLASS METHODS
 
@@ -15,6 +15,13 @@ class Vampire
   def self.sunrise
     @@coven.delete_if do |vampire|
       vampire.drank_blood_today == false || vampire.in_coffin == false
+    end
+  end
+
+  def self.sunset
+    @@coven.each do |vampire|
+      vampire.drank_blood_today = false
+      vampire.in_coffin = false
     end
   end
 
